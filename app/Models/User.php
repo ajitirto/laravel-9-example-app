@@ -45,5 +45,8 @@ class User extends Authenticatable
     public function product() {
         return $this->hasOne(Product::class,'id','id');
     }
+    public function scopeIdLessThan($query, $number){
+        $query->where('id',"<",$number);
+    }
 
 }
