@@ -23,11 +23,23 @@ Route::get('/user',function() {
 Route::get('/join', function() {
     $join = DB::table('users as a')
                 ->join('products as b', 'a.id', 'b.id' )
-                ->select('a.name as nama','b.price as harga', 'b.description as deskripsi')
+                ->select('a.id','a.name as nama','b.price as harga', 'b.description as deskripsi')
                 ->where('a.id','<',6)
                 ->get();
     // dd($join);
     return view('join',compact('join'));
+
+});
+
+Route::get('/join/{id}', function($id) {
+    // $join = DB::table('users as a')
+    //             ->join('products as b', 'a.id', 'b.id' )
+    //             ->select('a.id','a.name as nama','b.price as harga', 'b.description as deskripsi')
+    //             ->where('a.id','<',6)
+    //             ->find($id);
+    $join = User::with(['product'])->find($id);
+    // dd($join);
+    return view('join-one',compact('join'));
 
 });
 

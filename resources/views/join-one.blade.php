@@ -4,28 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Join</title>
+    <title>Document</title>
 </head>
 <body>
+
     <table>
         <tr>
             <td>No</td>
             <td>Nama</td>
             <td>Harga</td>
             <td>Deskripsi</td>
-            <td>profil</td>
         </tr>
-    @foreach ($join as $j)
         <tr>
-            <td>{{$loop->iteration}} </td>
-            <td>{{$j->nama}}</td>
-            <td>{{$j->harga}}</td>
-            <td>{{$j->deskripsi}}</td>
-            <td><a href="{{url('/join',$j->id )}}">{{$j->id}}</a></td>
-            <td>{{ url("/join/{$j->id}") }}</td>
+            <td>{{$join->id}}</td>
+            <td>{{$join->name}}</td>
+            <td> Rp. {{$join->product->price}}</td>
+            <td>{{$join->product->description}}</td>
         </tr>
-    @endforeach
-</table>
+    </table>
+
 
 </body>
 </html>
