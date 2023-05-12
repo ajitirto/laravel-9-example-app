@@ -26,6 +26,8 @@
         </tr>
     @endforeach
 </table>
-
+<p> 
+    fori
+</p>
 </body>
 </html>

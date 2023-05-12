@@ -31,16 +31,32 @@ Route::get('/users', function () {
     );
 });
 
-Route::group([
 
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function ($router) {
-
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-
+// eloquent postman
+Route::get('/eloquent',function() {
+    $userFactory = User::with('product')
+                        ->idLessThan(6)
+                        ->get();
+    dd($userFactory);
+    return response()->json([
+        "message" => "GET method success",
+        "data" => $userFactory
+    ]);
 });
+
+// // jwt-example-doc
+// Route::group([
+//     // 'middleware' => 'api',
+//     // 'prefix' => 'auth'
+// ], function ($router) {
+
+//     Route::post('login',[AuthController::class, 'login']);
+//     Route::post('logout',[AuthController::class, 'logout']);
+//     Route::post('refresh',[AuthController::class, 'refresh']);
+//     Route::post('me',[AuthController::class, 'me']);
+//     // Route::post('login', 'AuthController@login');
+//     // Route::post('logout', 'AuthController@logout');
+//     // Route::post('refresh', 'AuthController@refresh');
+//     // Route::post('me', 'AuthController@me');
+
+// });
